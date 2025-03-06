@@ -2,7 +2,7 @@
 
 AutoSu()
 {
-	[[ $UID == 0 ]] || exec sudo -p "$PROGRAM must be run as root. Please enter the password for %u to continue: " -- "$BASH" -- "$SELF" "${ARGS[@]}"
+	[[ $UID == 0 ]] || exec sudo -p "$0 must be run as root. Please enter the password for %u to continue: " -- "$0" "$@"
 }
 
 ## Script starts here ##
