@@ -1,0 +1,12 @@
+[Unit]
+Description=Service de notifications SMS (réseau)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/cconf/scripts/smsnotify/netwatch.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

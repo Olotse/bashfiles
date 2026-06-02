@@ -1,0 +1,12 @@
+[Unit]
+Description=Service de notifications SMS (état)
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/cconf/scripts/smsnotify/onboot.sh
+ExecStop=/cconf/scripts/smsnotify/onhalt.sh
+
+[Install]
+WantedBy=multi-user.target
