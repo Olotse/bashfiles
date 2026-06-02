@@ -11,7 +11,7 @@ case $- in
 esac
 
 ### custom constants
-TEST_NETWORK=1
+TEST_NETWORK=0
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -140,7 +140,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 echo -e "[\033[32m0K\033[37m]"
 
-if [ $TEST_NETWORK -eq 1 ]; then
+if [ $TEST_NETWORK -ne 0 ]; then
     echo -e "\n Testing newtwork connection..."
     ping -n -c 4 152.228.163.1
 
