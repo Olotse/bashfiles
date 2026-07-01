@@ -8,12 +8,16 @@ while true; do
 
   if ping -c 1 -W 5 "$CHECK_HOST" > /dev/null 2>&1; then
     if [ "$current_state" = "down" ]; then
-      send_sms "$(hostname) network is back UP"
+      now=$(date '+%Y-%m-%d %H:%M:%S')
+      down_time=$(cat "$NET_STATE_FILE.downtime" 2>/dev/null)
+      send_sms "$(hostname) network is back UP at $now (was DOWN since $down_time)"
       echo "up" > "$NET_STATE_FILE"
     fi
   else
     if [ "$current_state" = "up" ]; then
-      send_sms "$(hostname) network is DOWN"
+      now=$(date '+%Y-%m-%d %H:%M:%S')
+      echo "$now" > "$NET_STATE_FILE.downtime"
+      send_sms "$(hostname) network is DOWN since $now"
       echo "down" > "$NET_STATE_FILE"
     fi
   fi
