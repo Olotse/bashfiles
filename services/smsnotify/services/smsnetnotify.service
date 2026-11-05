@@ -1,6 +1,7 @@
 [Unit]
 Description=Service de notifications SMS (réseau)
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple
