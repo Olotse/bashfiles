@@ -12,6 +12,7 @@ esac
 
 ### custom constants
 TEST_NETWORK=0
+INIT_SCREEN=0
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -156,6 +157,11 @@ else
     echo -e "\n network details: "
     echo " - IPv4 `hostname -I | cut -d ' ' -f 1`"
     echo " - IPv6 `hostname -I | cut -d ' ' -f 2`"
+fi
+
+if [ $INIT_SCREEN -ne 0 ] && [ -n "$SSH_TTY" ] && [ -z "$SCREEN" ]; then
+    screen -R -D -S main 2>/dev/null || screen -S main
+    echo -e "Screen initialized"
 fi
 
 echo -e "\n Welcome `whoami`"
