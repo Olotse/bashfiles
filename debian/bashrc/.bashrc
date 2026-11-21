@@ -159,7 +159,7 @@ else
     echo " - IPv6 `hostname -I | cut -d ' ' -f 2`"
 fi
 
-if [ $INIT_SCREEN -ne 0 ] && [ -n "$SSH_TTY" ] && [ -z "$SCREEN" ]; then
+if [ $INIT_SCREEN -ne 0 ] && [ -n "$SSH_TTY" ] && [ -z "$STY" ]; then
     screen -R -D -S main 2>/dev/null || screen -S main
     echo -e "Screen initialized"
 fi
