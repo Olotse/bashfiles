@@ -1,0 +1,10 @@
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %Y %{W}%c %{g}]'
+
+sessionname main
+screen -t Explorer 0    # Window 0: named "Explorer"
+screen -t Background 1  # Window 1: named "Background"
+screen -t Logs 2        # Window 2: named "Logs"
+select 0                # Start in window 0
+
+termcapinfo xterm* ti@:te@
