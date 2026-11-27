@@ -2,7 +2,12 @@
 
 AutoSu()
 {
-	[[ $UID == 0 ]] || exec sudo -p "$0 must be run as root. Please enter the password for %u to continue: " -- "$0" "$@"
+  [[ $EUID -eq 0 ]] && return 0
+  command -v sudo >/dev/null 2>&1 || die "Lance ce script en root (sudo n'est pas installé)."
+  local self
+  self="$(realpath "${BASH_SOURCE[0]}")"
+  exec sudo -p "$(basename "$0") doit être lancé en root. Mot de passe de %u : " \
+    -- bash "$self" "$@"
 }
 
 InstallMariaDBModule()
